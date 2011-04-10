@@ -24,19 +24,26 @@ module Seevl
       self.new @@base + "/entity/#{id}"
     end
 
+    def Resource.base=(base)
+      @@base = base
+    end
+
+    def Resource.mapping=(mapping)
+      @@mapping = mapping
+    end
+
     def uri
       @uri
     end
 
     def method_missing(m, *args, &block)
       if @@mapping.keys.member? m
-        puts 'loading ' + @@mapping[m]
         load_partial_data(@@mapping[m])
       end
       send m if self.class.method_defined? m
     end
 
-    #protected
+    protected
 
     def load_partial_data(partial)
       uri = @uri + '/' + partial

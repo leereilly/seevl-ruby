@@ -8,6 +8,6 @@ Gem::Specification.new do |s|
   s.description = "A Ruby library to interact with the Seevl API"
   s.has_rdoc = true
   s.authors = ['Yves Raimond']
-  s.files = ["README", "seevl-ruby.gemspec", "lib", "examples", "lib/seevl-ruby.rb", "lib/seevl/resource.rb", "lib/seevl/artist.rb"]
+  s.files = ["README", "seevl-ruby.gemspec", "lib", "examples", "lib/seevl-ruby.rb", "lib/seevl/resource.rb", "lib/seevl/artist.rb", "tests/test_resource.rb"]
 end
 
