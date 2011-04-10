@@ -33,6 +33,9 @@ module Seevl
       Resource.mapping = {}
       assert_equal 'bar', obj.name
       assert_equal ["Paris", "London"], obj.origin
+      # in mapping, but not in response
+      Resource.mapping = { :description => 'infos' }
+      assert_equal nil, obj.description
     end
 
   end
