@@ -1,0 +1,13 @@
+Seevl API bindings for Ruby - yves@seevl.net
+---
+
+Example use:
+
+  require 'rubygems'
+  require 'seevl-ruby'
+
+  artist = Seevl::Artist.find_by_id('KvGtyyFQ')
+  puts artist.name
+  puts artist.description
+  puts artist.origin
+  puts artist.properties # display all available properties

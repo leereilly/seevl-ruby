@@ -32,6 +32,10 @@ module Seevl
       @@mapping = mapping
     end
 
+    def properties
+      @@mapping.keys
+    end
+
     def uri
       @uri
     end

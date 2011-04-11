@@ -19,6 +19,12 @@ module Seevl
       assert_equal 'http://seevl.net/entity/foo', obj.uri
     end
 
+    def test_properties
+      Resource.mapping = { :origin => 'facts' }
+      r = Resource.find_by_id 'foo'
+      assert_equal [ :origin ], r.properties
+    end
+
     def test_method_missing
       obj = Resource.find_by_id 'foo'
       # method name doesn't exist in mapping
