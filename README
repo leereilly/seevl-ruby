@@ -1,6 +1,14 @@
 Seevl API bindings for Ruby - yves@seevl.net
 ---
 
+Environment variables:
+
+  SEEVL_ID       : User identifier
+  SEEVL_KEY      : User key
+  SEEVL_USERNAME : Username (beta only)
+  SEEVL_PASSWORD : Password (beta only)
+  SEEVL_BASE     : Base URL for Seevl service (beta only)
+
 Example use:
 
   require 'rubygems'
