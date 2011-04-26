@@ -17,6 +17,9 @@ module Seevl
     @@mapping = {}
 
     def initialize(uri)
+      if !@@id || !@@key
+        raise 'Please set the SEEVL_ID and SEEVL_KEY environment variables'
+      end
       @uri = uri
     end
 
