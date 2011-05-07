@@ -56,12 +56,12 @@ module Seevl
     def load_partial_data(partial)
       uri = @uri + '/' + partial
       data = JSON.parse(Resource.http_get(uri))
-      data[partial].keys.each do |key|
-        if data[partial][key].size == 1
-          value = data[partial][key][0]['value']
+      data.keys.each do |key|
+        if data[key].size == 1
+          value = data[key][0]['value']
         else
           value = []
-          data[partial][key].each do |v|
+          data[key].each do |v|
             value << v['value']
           end
         end

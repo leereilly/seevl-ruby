@@ -9,6 +9,6 @@ Gem::Specification.new do |s|
   s.has_rdoc = true
   s.authors = ['Yves Raimond', "Alexandre Passant"]
   s.license = 'BSD'
-  s.files = ["README", "seevl-ruby.gemspec", "lib", "examples", "lib/seevl-ruby.rb", "lib/seevl/resource.rb", "lib/seevl/artist.rb", "tests/test_resource.rb"]
+  s.files = ["README", "seevl-ruby.gemspec", "lib", "examples", "lib/seevl-ruby.rb", "lib/seevl/resource.rb", "lib/seevl/artist.rb"]
 end
 

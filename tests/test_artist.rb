@@ -19,5 +19,15 @@ module Seevl
       assert_equal 'bad brains', artists[1].name
     end
 
+    def test_related
+      artist = Artist.find_by_id('foo')
+      related = artist.related
+      assert_equal 2, related.size
+      assert_equal 's1', related[0].sid
+      assert_equal 'descendents', related[0].name
+      assert_equal 's2', related[1].sid
+      assert_equal 'all', related[1].name
+    end
+
   end
 end
