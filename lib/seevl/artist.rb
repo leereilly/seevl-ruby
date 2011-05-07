@@ -20,6 +20,16 @@ module Seevl
       :freebase    => 'links',
     }
 
+    def Artist.find_all_by_name(name)
+        uri = @@base + "/entity/?name=#{URI.escape(name)}&type=artist"
+        data = JSON.parse(self.http_get(uri))
+        artists = []
+        data['results'].each do |artist_data|
+            artists << Artist.new(@@base + "/entity/#{artist_data['sid']}", artist_data)
+        end
+        return artists
+    end
+
   end
 
 end

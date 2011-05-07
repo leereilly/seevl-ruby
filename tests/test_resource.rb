@@ -2,6 +2,7 @@ require "rubygems"
 require "test/unit"
 
 require File.expand_path(File.dirname(__FILE__)) + '/../lib/seevl/resource'
+require File.expand_path(File.dirname(__FILE__)) + '/setup'
 
 module Seevl
 
@@ -12,6 +13,10 @@ module Seevl
     def test_initialize
       obj = Resource.new 'http://example.com'
       assert_equal 'http://example.com', obj.uri
+      obj = Resource.new 'http://example.com', { "foo" => "bar", "fruit" => "apple" }
+      assert_equal 'http://example.com', obj.uri
+      assert_equal 'bar', obj.foo
+      assert_equal 'apple', obj.fruit
     end
 
     def test_find_by_id
@@ -45,18 +50,4 @@ module Seevl
     end
 
   end
-
-  # Monkey-patching Seevl::Resource
-  class Resource
-    protected
-    def http_get(uri)
-      case uri
-      when 'http://seevl.net/entity/foo/infos'
-        '{"infos":{"name":[{"value":"bar"}]}}'
-      when 'http://seevl.net/entity/foo/facts'
-        '{"facts":{"origin":[{"value":"Paris"},{"value":"London"}]}}'
-      end
-    end
-  end
-
 end

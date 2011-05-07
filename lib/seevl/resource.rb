@@ -13,11 +13,12 @@ module Seevl
     # To be overridden
     @@mapping = {}
 
-    def initialize(uri)
+    def initialize(uri, data={})
       if !@@id || !@@key
         raise 'Please set the SEEVL_ID and SEEVL_KEY environment variables'
       end
       @uri = uri
+      @data = data
     end
 
     def Resource.find_by_id(id)
@@ -41,17 +42,20 @@ module Seevl
     end
 
     def method_missing(m, *args, &block)
+      if @data.keys.member? m.id2name
+        return @data[m.id2name]
+      end
       if @@mapping.keys.member? m
         load_partial_data(@@mapping[m])
+        return @data[m.id2name]
       end
-      send m if self.class.method_defined? m
     end
 
     protected
 
     def load_partial_data(partial)
       uri = @uri + '/' + partial
-      data = JSON.parse(http_get(uri))
+      data = JSON.parse(Resource.http_get(uri))
       data[partial].keys.each do |key|
         if data[partial][key].size == 1
           value = data[partial][key][0]['value']
@@ -61,13 +65,15 @@ module Seevl
             value << v['value']
           end
         end
-        self.class.send(:define_method, key) { return value }
+        @data[key] = value
       end
     end
 
-    def http_get(uri)
+    def Resource.http_get(uri)
       u = URI.parse(uri)
-      req = Net::HTTP::Get.new(u.path, { 'Accept' => 'application/json', 'X-APP_ID' => @@id, 'X-APP_KEY' => @@key })
+      path = u.path
+      path += '?' + u.query if u.query
+      req = Net::HTTP::Get.new(path, { 'User-Agent' => 'seevl-ruby', 'Accept' => 'application/json', 'X-APP_ID' => @@id, 'X-APP_KEY' => @@key })
       res = Net::HTTP.new(u.host, u.port).start { |http| http.request(req) }
       case res
       when Net::HTTPSuccess
