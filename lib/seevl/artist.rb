@@ -12,6 +12,7 @@ module Seevl
       :location    => 'facts',
       :member      => 'facts',
       :label       => 'facts',
+      :topic       => 'topics',
       :homepage    => 'links',
       :wikipedia   => 'links',
       :musicbrainz => 'links',
