@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name = "seevl-ruby"
-  s.version = "0.0.3"
+  s.version = "0.0.4"
   s.date = "2011-05-07"
   s.summary = "Seevl Ruby bindings"
   s.email = "yves@seevl.net"
