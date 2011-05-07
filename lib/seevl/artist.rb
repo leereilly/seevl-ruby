@@ -18,6 +18,7 @@ module Seevl
       :musicbrainz => 'links',
       :nytimes     => 'links',
       :freebase    => 'links',
+      :related     => 'related',
     }
 
     def Artist.find_all_by_name(name)
