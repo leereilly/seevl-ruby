@@ -5,9 +5,6 @@ Environment variables:
 
   SEEVL_ID       : User identifier
   SEEVL_KEY      : User key
-  SEEVL_USERNAME : Username (beta only)
-  SEEVL_PASSWORD : Password (beta only)
-  SEEVL_BASE     : Base URL for Seevl service (beta only)
 
 Example use:
 
@@ -18,4 +15,5 @@ Example use:
   puts artist.name
   puts artist.description
   puts artist.origin
+  puts artist.topic
   puts artist.properties # display all available properties
