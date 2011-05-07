@@ -9,9 +9,6 @@ module Seevl
     @@base = ENV['SEEVL_BASE'] || 'http://seevl.net'
     @@id   = ENV['SEEVL_ID']
     @@key  = ENV['SEEVL_KEY']
-    # The following will need to be removed when beta goes public
-    @@username = ENV['SEEVL_USERNAME']
-    @@password = ENV['SEEVL_PASSWORD']
 
     # To be overridden
     @@mapping = {}
@@ -70,8 +67,7 @@ module Seevl
 
     def http_get(uri)
       u = URI.parse(uri)
-      req = Net::HTTP::Get.new(u.path, { 'Accept' => 'application/json', 'X-seevl-id' => @@id, 'X-seevl-key' => @@key })
-      req.basic_auth @@username, @@password if @@username and @@password
+      req = Net::HTTP::Get.new(u.path, { 'Accept' => 'application/json', 'X-APP_ID' => @@id, 'X-APP_KEY' => @@key })
       res = Net::HTTP.new(u.host, u.port).start { |http| http.request(req) }
       case res
       when Net::HTTPSuccess
